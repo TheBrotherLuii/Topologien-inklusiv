@@ -118,7 +118,7 @@ void loop() {
 
 void pixel1On(){
   //Turn LED Sripe ON
-  for (int cntOn = 0; cntOn < 8; cntOn++) {
+  for (int cntOn = 0; cntOn < NUMPIXELS; cntOn++) {
     pixel1.setPixelColor(cntOn, pixel1.Color(255,255,255));
   }
   pixel1.show();
@@ -126,7 +126,7 @@ void pixel1On(){
 
 void pixel2On(){
   //Turn LED Sripe ON
-  for (int cntOn = 0; cntOn < 3; cntOn++) {
+  for (int cntOn = 0; cntOn < NUMPIXELS; cntOn++) {
     pixel2.setPixelColor(cntOn, pixel2.Color(255,255,255));
   }
   pixel2.show();
@@ -134,7 +134,7 @@ void pixel2On(){
 
 void pixel3On(){
   //Turn LED Sripe ON
-  for (int cntOn = 0; cntOn < 3; cntOn++) {
+  for (int cntOn = 0; cntOn < NUMPIXELS; cntOn++) {
     pixel3.setPixelColor(cntOn, pixel3.Color(255,255,255));
   }
   pixel3.show();
@@ -144,7 +144,7 @@ void pixel3On(){
 
 void pixel1Off(){
 //Turn LED Sripe OFF
-  for (int cntOff = 0; cntOff < 8; cntOff++) {
+  for (int cntOff = 0; cntOff < NUMPIXELS; cntOff++) {
     pixel1.setPixelColor(cntOff, pixel1.Color(0,0,0));
   }
   pixel1.show();
@@ -152,7 +152,7 @@ void pixel1Off(){
 
 void pixel2Off(){
 //Turn LED Sripe OFF
-  for (int cntOff = 0; cntOff < 3; cntOff++) {
+  for (int cntOff = 0; cntOff < NUMPIXELS; cntOff++) {
     pixel2.setPixelColor(cntOff, pixel2.Color(0,0,0));
   }
   pixel2.show();
@@ -160,7 +160,7 @@ void pixel2Off(){
 
 void pixel3Off(){
 //Turn LED Sripe OFF
-  for (int cntOff = 0; cntOff < 3; cntOff++) {
+  for (int cntOff = 0; cntOff < NUMPIXELS; cntOff++) {
     pixel3.setPixelColor(cntOff, pixel3.Color(0,0,0));
   }
   pixel3.show();

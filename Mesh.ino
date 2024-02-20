@@ -29,15 +29,13 @@ Busstruktur
 #define SW_LED_STRIPE_FIVE 8
 #define SW_LED_STRIPE_SIX 9
 
-#define NUMPIXELS_L 8
-#define NUMPIXELS_S 5
 
-Adafruit_NeoPixel pixel1 = Adafruit_NeoPixel(NUMPIXELS_L, LED_STRIPE_ONE, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel pixel2 = Adafruit_NeoPixel(NUMPIXELS_L, LED_STRIPE_TWO, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel pixel3 = Adafruit_NeoPixel(NUMPIXELS_S, LED_STRIPE_THREE, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel pixel4 = Adafruit_NeoPixel(NUMPIXELS_S, LED_STRIPE_ONE, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel pixel5 = Adafruit_NeoPixel(NUMPIXELS_S, LED_STRIPE_TWO, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel pixel6 = Adafruit_NeoPixel(NUMPIXELS_S, LED_STRIPE_THREE, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixel1 = Adafruit_NeoPixel(7, LED_STRIPE_ONE, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixel2 = Adafruit_NeoPixel(10, LED_STRIPE_TWO, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixel3 = Adafruit_NeoPixel(11, LED_STRIPE_THREE, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixel4 = Adafruit_NeoPixel(7, LED_STRIPE_FOUR, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixel5 = Adafruit_NeoPixel(8, LED_STRIPE_FIVE, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixel6 = Adafruit_NeoPixel(8, LED_STRIPE_SIX, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   //SWITCH
@@ -73,7 +71,12 @@ void setup() {
 }
 
 void loop() {
-  int PX1_ON,PX2_ON,PX3_ON,PX4_ON,PX5_ON,PX6_ON = 0;
+  int PX1_ON = 0;
+  int PX2_ON = 0;
+  int PX3_ON = 0;
+  int PX4_ON = 0;
+  int PX5_ON = 0;
+  int PX6_ON = 0;
   int P1_State,P2_State,P3_State,P4_State,L1_State,L2_State,L3_State,L4_State,L5_State,L6_State = 0;
     
   P1_State = digitalRead(SW_PC_ONE);
@@ -87,14 +90,14 @@ void loop() {
   L5_State = digitalRead(SW_LED_STRIPE_FIVE);
   L6_State = digitalRead(SW_LED_STRIPE_SIX);
 //print
-  if (P1_State==1)
-  {Serial.println("P1");}
-  if (P2_State==1)
-  {Serial.println("P2");}
-  if (P3_State==1)
-  {Serial.println("P3");}
-  if (P4_State==1)
-  {Serial.println("P4");}
+  //if (P1_State==1)
+  //{Serial.println("P1");}
+  //if (P2_State==1)
+  //{Serial.println("P2");}
+  //if (P3_State==1)
+  //{Serial.println("P3");}
+  //if (P4_State==1)
+  //{Serial.println("P4");}
   if (L1_State==1)
   {Serial.println("L1");}
   if (L2_State==1)
@@ -110,20 +113,20 @@ void loop() {
 
 //LED STRIP LOGIC
 
-  if(P1_State==1 && P2_State==2){
+  if(P1_State==1 && P2_State==1){
     if(L4_State==1)  {
       PX4_ON = 1;
-    } else if (L2_State==1 && L5_State==1)  {
+    } else if (L2_State==1 && L5_State==1 && P4_State==1)  {
       PX2_ON = 1;
       PX5_ON = 1;
-    } else if (L1_State==1 && L3_State==1)  {
+    } else if (L1_State==1 && L3_State==1 && P3_State==1)  {
       PX1_ON = 1;
       PX3_ON = 1;
-    } else if ( L1_State==1 && L6_State==1 && L5_State==1)  {
+    } else if ( L1_State==1 && L6_State==1 && L5_State==1 && P3_State==1 && P4_State==1)  {
       PX1_ON = 1;
       PX5_ON = 1;
       PX6_ON = 1;
-    } else if (L2_State==1 && L6_State==1 && L3_State==1)  {
+    } else if (L2_State==1 && L6_State==1 && L3_State==1 && P4_State==1 && P3_State==1)  {
       PX2_ON = 1;
       PX3_ON = 1;
       PX6_ON = 1;
@@ -133,17 +136,17 @@ void loop() {
   if(P1_State==1 && P3_State==1){
     if(L1_State==1) {
       PX1_ON = 1;
-    } else if (L2_State==1 && L6_State==1)  {
+    } else if (L2_State==1 && L6_State==1 && P4_State==1)  {
       PX2_ON = 1;
       PX6_ON = 1;
-    } else if (L4_State==1 && L3_State==1)  {
+    } else if (L4_State==1 && L3_State==1 && P2_State==1)  {
       PX4_ON = 1;
       PX3_ON = 1;
-    } else if (L4_State==1 && L6_State==1 && L5_State==1)  {
+    } else if (L4_State==1 && L6_State==1 && L5_State==1 && P2_State==1 && P4_State==1)  {
       PX4_ON = 1;
       PX5_ON = 1;
       PX6_ON = 1;
-    } else if (L2_State==1 && L5_State==1 && L3_State==1){
+    } else if (L2_State==1 && L5_State==1 && L3_State==1 && P4_State==1 && P2_State==1){
       PX2_ON = 1;
       PX5_ON = 1;
       PX3_ON = 1;
@@ -154,18 +157,19 @@ void loop() {
   if(P1_State==1 && P4_State==1){
     if(L2_State==1)  {
       PX2_ON = 1;
-    } else if (L4_State==1 && L5_State==1)  {
+    } else if (L4_State==1 && L5_State==1 && P2_State==1)  {
       PX4_ON = 1;
       PX5_ON = 1;
-    } else if (L1_State==1 && L6_State==1)  {
+    } else if (L1_State==1 && L6_State==1 && P3_State==1)  {
       PX1_ON = 1;
       PX6_ON = 1;
-    } else if (L1_State==1 && L3_State==1 && L5_State==1)  {
+    } else if (L1_State==1 && L3_State==1 && L5_State==1 && P3_State==1 && P2_State==1)  {
       PX1_ON = 1;
       PX3_ON = 1;
       PX5_ON = 1;
-    } else if (L3_State==1 && L4_State==1 && L6_State==1){
+    } else if (L3_State==1 && L4_State==1 && L6_State==1 && P3_State==1 && P2_State==1){ //TODO
       PX4_ON = 1;
+      PX3_ON = 1;
       PX6_ON = 1;
     }
   
@@ -174,17 +178,17 @@ void loop() {
   if(P2_State==1 && P3_State==1)  {
       if(L3_State==1){
         PX3_ON = 1;
-      } else if (L5_State==1 && L6_State==1){
+      } else if (L5_State==1 && L6_State==1 && P4_State==1){
         PX5_ON = 1;
         PX6_ON = 1;
-      } else if (L4_State==1 && L1_State==1){
+      } else if (L4_State==1 && L1_State==1 && P1_State==1){
         PX4_ON = 1;
         PX1_ON = 1;
-      } else if (L4_State==1 && L2_State==1 && L6_State==1){
+      } else if (L4_State==1 && L2_State==1 && L6_State==1 && P1_State==1 && P4_State==1){
         PX4_ON = 1;
         PX2_ON = 1;
         PX6_ON = 1;
-      } else if (L5_State==1 && L2_State==1 && L1_State==1) {
+      } else if (L5_State==1 && L2_State==1 && L1_State==1 && P4_State==1 && P1_State==1) {
         PX5_ON = 1;
         PX2_ON = 1;
         PX1_ON = 1;
@@ -194,17 +198,17 @@ void loop() {
   if(P2_State==1 && P4_State==1)  {
     if(L5_State==1)  {
         PX5_ON = 1;
-      } else if (L3_State==1 && L6_State==1)  {
+      } else if (L3_State==1 && L6_State==1 && P3_State==1)  {
         PX3_ON = 1;
         PX6_ON = 1;
-      } else if (L4_State==1 && L2_State==1)  {
+      } else if (L4_State==1 && L2_State==1 && P1_State==1)  {
         PX4_ON = 1;
         PX2_ON = 1;
-      } else if (L3_State==1 && L1_State==1 && L2_State==1)  {
+      } else if (L3_State==1 && L1_State==1 && L2_State==1 && P3_State==1 && P1_State==1)  {
         PX3_ON = 1;
         PX1_ON = 1;
         PX2_ON = 1;
-      } else if (L4_State==1 && L1_State==1 && L6_State==1){
+      } else if (L4_State==1 && L1_State==1 && L6_State==1 && P1_State==1 && P3_State==1){
         PX4_ON = 1;
         PX1_ON = 1;
         PX6_ON = 1;
@@ -214,17 +218,17 @@ void loop() {
   if(P3_State==1 && P4_State==1){
     if(L6_State==1)  {
       PX6_ON = 1;
-    } else if (L2_State==1 && L1_State==1) {
+    } else if (L2_State==1 && L1_State==1 && P1_State==1) {
       PX2_ON = 1;
       PX1_ON = 1;
-    } else if (L5_State==1 && L3_State==1){
+    } else if (L5_State==1 && L3_State==1 && P4_State==1){
       PX5_ON = 1;
       PX3_ON = 1;
-    } else if (L5_State==1 && L4_State==1 && L1_State==1)  {
+    } else if (L5_State==1 && L4_State==1 && L1_State==1 && P2_State==1 && P1_State==1)  {
       PX5_ON = 1;
       PX4_ON = 1;
       PX1_ON = 1;
-    } else if (L2_State==1 && L4_State==1 && L3_State==1){
+    } else if (L2_State==1 && L4_State==1 && L3_State==1 && P1_State==1 && P2_State==1){
       PX2_ON = 1;
       PX4_ON = 1;
       PX3_ON = 1;
@@ -240,36 +244,42 @@ void loop() {
 //illuminate LED STRIPES
   if(PX1_ON==1){
     pixel1On();
+    Serial.println("1On");
   }
   else{
     pixel1Off();
   }
   if(PX2_ON==1){
     pixel2On();
+    Serial.println("2On");
   }
   else {
     pixel2Off();
   }
   if(PX3_ON==1){
     pixel3On();
+    Serial.println("3On");
   }
   else {
     pixel3Off();
   }
   if(PX4_ON==1){
     pixel4On();
+    Serial.println("4On");
   }
   else {
     pixel4Off();
   }
   if(PX5_ON==1){
     pixel5On();
+    Serial.println("5On");
   }
   else {
     pixel5Off();
   }
   if(PX6_ON==1){
     pixel6On();
+    Serial.println("6On");
   }
   else {
     pixel6Off();
@@ -281,7 +291,7 @@ delay(100);
 
 void pixel1On(){
   //Turn LED Sripe ON
-  for (int cntOn = 0; cntOn < 8; cntOn++) {
+  for (int cntOn = 0; cntOn < 7; cntOn++) {
     pixel1.setPixelColor(cntOn, pixel1.Color(255,255,255));
   }
   pixel1.show();
@@ -289,7 +299,7 @@ void pixel1On(){
 
 void pixel2On(){
   //Turn LED Sripe ON
-  for (int cntOn = 0; cntOn < 3; cntOn++) {
+  for (int cntOn = 0; cntOn < 10; cntOn++) {
     pixel2.setPixelColor(cntOn, pixel2.Color(255,255,255));
   }
   pixel2.show();
@@ -297,7 +307,7 @@ void pixel2On(){
 
 void pixel3On(){
   //Turn LED Sripe ON
-  for (int cntOn = 0; cntOn < 3; cntOn++) {
+  for (int cntOn = 0; cntOn < 11; cntOn++) {
     pixel3.setPixelColor(cntOn, pixel3.Color(255,255,255));
   }
   pixel3.show();
@@ -305,7 +315,7 @@ void pixel3On(){
 
 void pixel4On(){
   //Turn LED Sripe ON
-  for (int cntOn = 0; cntOn < 3; cntOn++) {
+  for (int cntOn = 0; cntOn < 7; cntOn++) {
     pixel4.setPixelColor(cntOn, pixel4.Color(255,255,255));
   }
   pixel4.show();
@@ -313,7 +323,7 @@ void pixel4On(){
 
 void pixel5On(){
   //Turn LED Sripe ON
-  for (int cntOn = 0; cntOn < 3; cntOn++) {
+  for (int cntOn = 0; cntOn < 8; cntOn++) {
     pixel5.setPixelColor(cntOn, pixel5.Color(255,255,255));
   }
   pixel5.show();
@@ -322,7 +332,7 @@ void pixel5On(){
 
 void pixel6On(){
   //Turn LED Sripe ON
-  for (int cntOn = 0; cntOn < 3; cntOn++) {
+  for (int cntOn = 0; cntOn < 8; cntOn++) {
     pixel6.setPixelColor(cntOn, pixel6.Color(255,255,255));
   }
   pixel6.show();
@@ -330,7 +340,7 @@ void pixel6On(){
 
 void pixel1Off(){
 //Turn LED Sripe OFF
-  for (int cntOff = 0; cntOff < 8; cntOff++) {
+  for (int cntOff = 0; cntOff < 7; cntOff++) {
     pixel1.setPixelColor(cntOff, pixel1.Color(0,0,0));
   }
   pixel1.show();
@@ -338,7 +348,7 @@ void pixel1Off(){
 
 void pixel2Off(){
 //Turn LED Sripe OFF
-  for (int cntOff = 0; cntOff < 3; cntOff++) {
+  for (int cntOff = 0; cntOff < 10; cntOff++) {
     pixel2.setPixelColor(cntOff, pixel2.Color(0,0,0));
   }
   pixel2.show();
@@ -346,7 +356,7 @@ void pixel2Off(){
 
 void pixel3Off(){
 //Turn LED Sripe OFF
-  for (int cntOff = 0; cntOff < 3; cntOff++) {
+  for (int cntOff = 0; cntOff < 11; cntOff++) {
     pixel3.setPixelColor(cntOff, pixel3.Color(0,0,0));
   }
   pixel3.show();
@@ -354,7 +364,7 @@ void pixel3Off(){
 
 void pixel4Off(){
 //Turn LED Sripe OFF
-  for (int cntOff = 0; cntOff < 3; cntOff++) {
+  for (int cntOff = 0; cntOff < 7; cntOff++) {
     pixel4.setPixelColor(cntOff, pixel4.Color(0,0,0));
   }
   pixel4.show();
@@ -362,7 +372,7 @@ void pixel4Off(){
 
 void pixel5Off(){
 //Turn LED Sripe OFF
-  for (int cntOff = 0; cntOff < 3; cntOff++) {
+  for (int cntOff = 0; cntOff < 8; cntOff++) {
     pixel5.setPixelColor(cntOff, pixel5.Color(0,0,0));
   }
   pixel5.show();
@@ -370,7 +380,7 @@ void pixel5Off(){
 
 void pixel6Off(){
 //Turn LED Sripe OFF
-  for (int cntOff = 0; cntOff < 3; cntOff++) {
+  for (int cntOff = 0; cntOff < 8; cntOff++) {
     pixel6.setPixelColor(cntOff, pixel6.Color(0,0,0));
   }
   pixel6.show();
