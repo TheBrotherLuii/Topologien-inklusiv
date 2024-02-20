@@ -1,5 +1,5 @@
 /*
-Busstruktur
+Maschentopologie
 */
 
 #include <Adafruit_NeoPixel.h>
@@ -89,27 +89,6 @@ void loop() {
   L4_State = digitalRead(SW_LED_STRIPE_FOUR);
   L5_State = digitalRead(SW_LED_STRIPE_FIVE);
   L6_State = digitalRead(SW_LED_STRIPE_SIX);
-//print
-  //if (P1_State==1)
-  //{Serial.println("P1");}
-  //if (P2_State==1)
-  //{Serial.println("P2");}
-  //if (P3_State==1)
-  //{Serial.println("P3");}
-  //if (P4_State==1)
-  //{Serial.println("P4");}
-  if (L1_State==1)
-  {Serial.println("L1");}
-  if (L2_State==1)
-  {Serial.println("L2");}
-  if (L3_State==1)
-  {Serial.println("L3");}
-  if (L4_State==1)
-  {Serial.println("L4");}
-  if (L5_State==1)
-  {Serial.println("L5");}
-  if (L6_State==1)
-  {Serial.println("L6");}
 
 //LED STRIP LOGIC
 
@@ -244,42 +223,37 @@ void loop() {
 //illuminate LED STRIPES
   if(PX1_ON==1){
     pixel1On();
-    Serial.println("1On");
   }
   else{
     pixel1Off();
   }
   if(PX2_ON==1){
     pixel2On();
-    Serial.println("2On");
+
   }
   else {
     pixel2Off();
   }
   if(PX3_ON==1){
     pixel3On();
-    Serial.println("3On");
   }
   else {
     pixel3Off();
   }
   if(PX4_ON==1){
     pixel4On();
-    Serial.println("4On");
   }
   else {
     pixel4Off();
   }
   if(PX5_ON==1){
     pixel5On();
-    Serial.println("5On");
   }
   else {
     pixel5Off();
   }
   if(PX6_ON==1){
     pixel6On();
-    Serial.println("6On");
   }
   else {
     pixel6Off();

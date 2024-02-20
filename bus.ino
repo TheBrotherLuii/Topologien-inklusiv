@@ -85,47 +85,6 @@ void loop() {
   L4_State = digitalRead(SW_LED_STRIPE_FOUR);
   L5_State = digitalRead(SW_LED_STRIPE_FIVE);
 
-//print
-  if (P1_State==1)
-    { 
-      Serial.println("P1");
-    }
-  if (P2_State==1)
-    {
-      Serial.println("P2");
-      }
-  if (P3_State==1)
-    {
-      Serial.println("P3");
-    }
-  if (P4_State==1)
-    {
-      Serial.println("P4");
-      }
-  if (L1_State==1)
-    {
-      Serial.println("L1");
-      }
-  if (L2_State==1)
-    {
-      Serial.println("L2");
-      }
-  if (L3_State==1)
-    {
-      Serial.println("L3");
-      }
-  if (L4_State==1)
-    {
-      Serial.println("L4");
-      }
-  if (L5_State==1)
-    {
-      Serial.println("L5");
-    }
-
-
-
-
   if(L1_State==1){                         
     if(P2_State==1 && L3_State==1 && P1_State==1 && L2_State==1){
       PX1_ON = 1;                                                                              
@@ -193,9 +152,7 @@ void loop() {
     pixel5Off();
   }
 
- 
-
-  //illuminate PC LEDs
+   //illuminate PC LEDs
   illuminateLED(PC_ONE,P1_State);
   illuminateLED(PC_TWO,P2_State);
   illuminateLED(PC_THREE,P3_State);

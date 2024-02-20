@@ -1,5 +1,5 @@
 /*
-Busstruktur
+Sternstruktur
 */
 
 #include <Adafruit_NeoPixel.h>
@@ -68,22 +68,6 @@ void loop() {
   L1_State = digitalRead(SW_LED_STRIPE_ONE);
   L2_State = digitalRead(SW_LED_STRIPE_TWO);
   L3_State = digitalRead(SW_LED_STRIPE_THREE);
-
-//print
-  if (P1_State==1)
-  {Serial.println("P1");}
-  if (P2_State==1)
-  {Serial.println("P2");}
-  if (P3_State==1)
-  {Serial.println("P3");}
-  if (P4_State==1)
-  {Serial.println("P4");}
-  if (L1_State==1)
-  {Serial.println("L1");}
-  if (L2_State==1)
-  {Serial.println("L2");}
-  if (L3_State==1)
-  {Serial.println("L3");}
 
 // illuminate PCs
   illuminateLED(PC_ONE,P1_State);
