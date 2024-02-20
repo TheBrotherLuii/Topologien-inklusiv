@@ -71,6 +71,7 @@ void setup() {
 }
 
 void loop() {
+  int skip = 0;
   int PX1_ON = 0;
   int PX2_ON = 0;
   int PX3_ON = 0;
@@ -93,125 +94,156 @@ void loop() {
 //LED STRIP LOGIC
 
   if(P1_State==1 && P2_State==1){
-    if(L4_State==1)  {
+    if (L2_State==1 && L6_State==1 && L3_State==1 && P4_State==1 && P3_State==1 && skip==0)  {
+      PX2_ON = 1;
+      PX3_ON = 1;
+      PX6_ON = 1;
+      skip = 1;
+    } else if ( L1_State==1 && L6_State==1 && L5_State==1 && P3_State==1 && P4_State==1 && skip==0)  {
+      PX1_ON = 1;
+      PX5_ON = 1;
+      PX6_ON = 1;
+      skip = 1;
+    } else if (L2_State==1 && L5_State==1 && P4_State==1 && skip==0)  {
+      PX2_ON = 1;
+      PX5_ON = 1;
+      skip = 1;
+    } else if (L1_State==1 && L3_State==1 && P3_State==1 && skip==0)  {
+      PX1_ON = 1;
+      PX3_ON = 1;
+      skip = 1;
+    } else if(L4_State==1 && skip==0)  {
       PX4_ON = 1;
-    } else if (L2_State==1 && L5_State==1 && P4_State==1)  {
-      PX2_ON = 1;
-      PX5_ON = 1;
-    } else if (L1_State==1 && L3_State==1 && P3_State==1)  {
-      PX1_ON = 1;
-      PX3_ON = 1;
-    } else if ( L1_State==1 && L6_State==1 && L5_State==1 && P3_State==1 && P4_State==1)  {
-      PX1_ON = 1;
-      PX5_ON = 1;
-      PX6_ON = 1;
-    } else if (L2_State==1 && L6_State==1 && L3_State==1 && P4_State==1 && P3_State==1)  {
-      PX2_ON = 1;
-      PX3_ON = 1;
-      PX6_ON = 1;
-    } 
+      skip = 1;
+    }
   }
 
   if(P1_State==1 && P3_State==1){
-    if(L1_State==1) {
+    if (L2_State==1 && L5_State==1 && L3_State==1 && P4_State==1 && P2_State==1 && skip==0){
+      PX2_ON = 1;
+      PX5_ON = 1;
+      PX3_ON = 1;
+      skip = 1;
+    } else if (L4_State==1 && L6_State==1 && L5_State==1 && P2_State==1 && P4_State==1 && skip==0)  {
+      PX4_ON = 1;
+      PX5_ON = 1;
+      PX6_ON = 1;
+      skip = 1;
+    } else if (L2_State==1 && L6_State==1 && P4_State==1 && skip==0)  {
+      PX2_ON = 1;
+      PX6_ON = 1;
+      skip = 1;
+    } else if (L4_State==1 && L3_State==1 && P2_State==1 && skip==0)  {
+      PX4_ON = 1;
+      PX3_ON = 1;
+      skip = 1;
+    } else if(L1_State==1 && skip==0) {
       PX1_ON = 1;
-    } else if (L2_State==1 && L6_State==1 && P4_State==1)  {
-      PX2_ON = 1;
-      PX6_ON = 1;
-    } else if (L4_State==1 && L3_State==1 && P2_State==1)  {
-      PX4_ON = 1;
-      PX3_ON = 1;
-    } else if (L4_State==1 && L6_State==1 && L5_State==1 && P2_State==1 && P4_State==1)  {
-      PX4_ON = 1;
-      PX5_ON = 1;
-      PX6_ON = 1;
-    } else if (L2_State==1 && L5_State==1 && L3_State==1 && P4_State==1 && P2_State==1){
-      PX2_ON = 1;
-      PX5_ON = 1;
-      PX3_ON = 1;
+      skip = 1;
     }
-
   }
-
   if(P1_State==1 && P4_State==1){
-    if(L2_State==1)  {
+    if (L3_State==1 && L4_State==1 && L6_State==1 && P3_State==1 && P2_State==1 && skip==0){
+      PX4_ON = 1;
+      PX3_ON = 1;
+      PX6_ON = 1;
+      skip = 1;
+    } else if (L1_State==1 && L3_State==1 && L5_State==1 && P3_State==1 && P2_State==1 && skip==0)  {
+      PX1_ON = 1;
+      PX3_ON = 1;
+      PX5_ON = 1;
+      skip = 1;
+    } else if (L4_State==1 && L5_State==1 && P2_State==1 && skip==0)  {
+      PX4_ON = 1;
+      PX5_ON = 1;
+      skip = 1;
+    } else if (L1_State==1 && L6_State==1 && P3_State==1 && skip==0)  {
+      PX1_ON = 1;
+      PX6_ON = 1;
+      skip = 1;
+    } else  if(L2_State==1 && skip==0)  {
       PX2_ON = 1;
-    } else if (L4_State==1 && L5_State==1 && P2_State==1)  {
-      PX4_ON = 1;
-      PX5_ON = 1;
-    } else if (L1_State==1 && L6_State==1 && P3_State==1)  {
-      PX1_ON = 1;
-      PX6_ON = 1;
-    } else if (L1_State==1 && L3_State==1 && L5_State==1 && P3_State==1 && P2_State==1)  {
-      PX1_ON = 1;
-      PX3_ON = 1;
-      PX5_ON = 1;
-    } else if (L3_State==1 && L4_State==1 && L6_State==1 && P3_State==1 && P2_State==1){ //TODO
-      PX4_ON = 1;
-      PX3_ON = 1;
-      PX6_ON = 1;
-    }
-  
+      skip = 1;
+      }
   }
 
   if(P2_State==1 && P3_State==1)  {
-      if(L3_State==1){
+     if (L5_State==1 && L2_State==1 && L1_State==1 && P4_State==1 && P1_State==1 && skip==0) {
+        PX5_ON = 1;
+        PX2_ON = 1;
+        PX1_ON = 1;
+        skip = 1;
+      } else if (L4_State==1 && L2_State==1 && L6_State==1 && P1_State==1 && P4_State==1 && skip==0){
+        PX4_ON = 1;
+        PX2_ON = 1;
+        PX6_ON = 1;
+        skip = 1;
+      } else if (L4_State==1 && L1_State==1 && P1_State==1 && skip==0){
+        PX4_ON = 1;
+        PX1_ON = 1;
+      } else if (L5_State==1 && L6_State==1 && P4_State==1 && skip==0){
+        PX5_ON = 1;
+        PX6_ON = 1;
+        skip = 1;
+      } else if(L3_State==1 && skip==0){
         PX3_ON = 1;
-      } else if (L5_State==1 && L6_State==1 && P4_State==1){
-        PX5_ON = 1;
-        PX6_ON = 1;
-      } else if (L4_State==1 && L1_State==1 && P1_State==1){
-        PX4_ON = 1;
-        PX1_ON = 1;
-      } else if (L4_State==1 && L2_State==1 && L6_State==1 && P1_State==1 && P4_State==1){
-        PX4_ON = 1;
-        PX2_ON = 1;
-        PX6_ON = 1;
-      } else if (L5_State==1 && L2_State==1 && L1_State==1 && P4_State==1 && P1_State==1) {
-        PX5_ON = 1;
-        PX2_ON = 1;
-        PX1_ON = 1;
-      }
+        skip = 1;
+      } 
   }
 
   if(P2_State==1 && P4_State==1)  {
-    if(L5_State==1)  {
+    if (L4_State==1 && L1_State==1 && L6_State==1 && P1_State==1 && P3_State==1 && skip==0){
+        PX4_ON = 1;
+        PX1_ON = 1;
+        PX6_ON = 1;
+        skip = 1;
+      } else if (L3_State==1 && L1_State==1 && L2_State==1 && P3_State==1 && P1_State==1 && skip==0)  {
+        PX3_ON = 1;
+        PX1_ON = 1;
+        PX2_ON = 1;
+        skip = 1;
+      } else if (L4_State==1 && L2_State==1 && P1_State==1 && skip==0)  {
+        PX4_ON = 1;
+        PX2_ON = 1;
+        skip = 1;
+      } else if (L3_State==1 && L6_State==1 && P3_State==1 && skip==0)  {
+        PX3_ON = 1;
+        PX6_ON = 1;
+        skip = 1;
+      } else if(L5_State==1 && skip==0)  {
         PX5_ON = 1;
-      } else if (L3_State==1 && L6_State==1 && P3_State==1)  {
-        PX3_ON = 1;
-        PX6_ON = 1;
-      } else if (L4_State==1 && L2_State==1 && P1_State==1)  {
-        PX4_ON = 1;
-        PX2_ON = 1;
-      } else if (L3_State==1 && L1_State==1 && L2_State==1 && P3_State==1 && P1_State==1)  {
-        PX3_ON = 1;
-        PX1_ON = 1;
-        PX2_ON = 1;
-      } else if (L4_State==1 && L1_State==1 && L6_State==1 && P1_State==1 && P3_State==1){
-        PX4_ON = 1;
-        PX1_ON = 1;
-        PX6_ON = 1;
-      }
+        skip = 1;
+      }  
   }
 
-  if(P3_State==1 && P4_State==1){
-    if(L6_State==1)  {
+  if(P3_State==1 && P4_State==1 && skip==0){
+    if (L2_State==1 && L4_State==1 && L3_State==1 && P1_State==1 && P2_State==1 && skip==0){
+      PX2_ON = 1;
+      PX4_ON = 1;
+      PX3_ON = 1;
+      skip = 1;
+    } else if (L2_State==1 && L4_State==1 && L3_State==1 && P1_State==1 && P2_State==1 && skip==0){
+      PX2_ON = 1;
+      PX4_ON = 1;
+      PX3_ON = 1;
+      skip = 1;
+    } else if (L5_State==1 && L4_State==1 && L1_State==1 && P2_State==1 && P1_State==1 && skip==0)  {
+      PX5_ON = 1;
+      PX4_ON = 1;
+      PX1_ON = 1;
+      skip = 1;
+      } else if (L2_State==1 && L1_State==1 && P1_State==1 && skip==0) {
+      PX2_ON = 1;
+      PX1_ON = 1;
+      skip = 1;
+    } else if (L5_State==1 && L3_State==1 && P4_State==1 && skip==0){
+      PX5_ON = 1;
+      PX3_ON = 1;
+      skip = 1;
+    } else if(L6_State==1)  {
       PX6_ON = 1;
-    } else if (L2_State==1 && L1_State==1 && P1_State==1) {
-      PX2_ON = 1;
-      PX1_ON = 1;
-    } else if (L5_State==1 && L3_State==1 && P4_State==1){
-      PX5_ON = 1;
-      PX3_ON = 1;
-    } else if (L5_State==1 && L4_State==1 && L1_State==1 && P2_State==1 && P1_State==1)  {
-      PX5_ON = 1;
-      PX4_ON = 1;
-      PX1_ON = 1;
-    } else if (L2_State==1 && L4_State==1 && L3_State==1 && P1_State==1 && P2_State==1){
-      PX2_ON = 1;
-      PX4_ON = 1;
-      PX3_ON = 1;
-    }
+      skip = 1;
+    }  
   }
 
 //illuminate Pcs
@@ -219,6 +251,8 @@ void loop() {
   illuminateLED(PC_TWO,P2_State);
   illuminateLED(PC_THREE,P3_State);
   illuminateLED(PC_FOUR,P4_State);
+
+
 
 //illuminate LED STRIPES
   if(PX1_ON==1){
